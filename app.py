@@ -1,10 +1,73 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template_string
 from PyPDF2 import PdfReader, PdfWriter
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
 app = Flask(__name__)
+
+# API Documentation HTML
+api_documentation = """
+<h2>API Documentation</h2>
+
+<h3>Base URL:</h3>
+<p><a href="https://pdf.2kauto.com">https://pdf.2kauto.com</a></p>
+
+<h3>Forms for PDF Generation:</h3>
+
+<h4>1. MV-6 Form:</h4>
+<ul>
+    <li>URL: <code>https://pdf.2kauto.com/mv6</code></li>
+    <li>HTTP Method: <code>GET</code></li>
+    <li>Description: Used to generate a PDF file for the MV-6 form.</li>
+</ul>
+<h5>Parameters (URL Parameters):</h5>
+<ul>
+    <li><code>bussines_name</code> (string): Business name</li>
+    <li><code>bus_id</code> (string): Business ID</li>
+    <li><code>street</code> (string): Street</li>
+    <li><code>city</code> (string): City</li>
+    <li><code>state</code> (string): State</li>
+    <li><code>zip</code> (string): ZIP code</li>
+    <li><code>vin</code> (string): Vehicle Identification Number (VIN)</li>
+    <li><code>year</code> (string): Vehicle year</li>
+    <li><code>make</code> (string): Vehicle make</li>
+    <li><code>odometer</code> (string): Odometer reading</li>
+    <li><code>inspector_name</code> (string): Inspector's name</li>
+    <li><code>date</code> (string): Date</li>
+</ul>
+<h5>Example Request:</h5>
+<pre>https://pdf.2kauto.com/mv6?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=testvin&year=2024&make=Toyota&odometer=150000&inspector_name=JaneDoe&date=09/10/2024</pre>
+
+<h4>2. MV-426 Form:</h4>
+<ul>
+    <li>URL: <code>https://pdf.2kauto.com/mv426</code></li>
+    <li>HTTP Method: <code>GET</code></li>
+    <li>Description: Used to generate a PDF file for the MV-426 form, which consists of three pages.</li>
+</ul>
+<h5>Parameters (URL Parameters):</h5>
+<ul>
+    <li><code>bussines_name</code> (string): Business name</li>
+    <li><code>bus_id</code> (string): Business ID</li>
+    <li><code>street</code> (string): Street</li>
+    <li><code>city</code> (string): City</li>
+    <li><code>state</code> (string): State</li>
+    <li><code>zip</code> (string): ZIP code</li>
+    <li><code>vin</code> (string): Vehicle Identification Number (VIN)</li>
+    <li><code>station_number</code> (string): Station number</li>
+    <li><code>inspector_name</code> (string): Inspector's name</li>
+    <li><code>station_phone</code> (string): Station phone number</li>
+    <li><code>inspector_number</code> (string): Inspector's number</li>
+    <li><code>date</code> (string): Date</li>
+</ul>
+<h5>Example Request:</h5>
+<pre>https://pdf.2kauto.com/mv426?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=testvin&station_number=456789&inspector_name=JaneDoe&station_phone=5551234567&inspector_number=654321&date=09/10/2024</pre>
+"""
+
+# The root route for API documentation
+@app.route('/')
+def api_docs():
+    return render_template_string(api_documentation)
 
 # The route for PDF MV-6
 @app.route('/mv6', methods=['GET'])
