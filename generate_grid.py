@@ -5,7 +5,6 @@ def generate_grid():
     c = canvas.Canvas("coordinate_grid.pdf", pagesize=letter)
     width, height = letter
     
-    # Малюємо сітку з кроком 50 пікселів по X і Y
     for x in range(0, int(width), 50):
         c.line(x, 0, x, height)
         c.drawString(x, 10, str(x))
@@ -16,5 +15,4 @@ def generate_grid():
 
     c.save()
 
-# Генеруємо координатну сітку
 generate_grid()
