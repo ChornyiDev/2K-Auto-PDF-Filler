@@ -37,7 +37,7 @@ api_documentation = """
     <li><code>date</code> (string): Date</li>
 </ul>
 <h5>Example Request:</h5>
-<pre>https://pdf.2kauto.com/mv6?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=testvin&year=2024&make=Toyota&odometer=150000&inspector_name=JaneDoe&date=09/10/2024</pre>
+<pre>https://pdf.2kauto.com/mv6?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=1e2r3t4y5u6i7o&year=2024&make=Toyota&odometer=150000&inspector_name=JaneDoe&date=09/10/2024</pre>
 
 <h4>2. MV-426 Form:</h4>
 <ul>
@@ -61,7 +61,7 @@ api_documentation = """
     <li><code>date</code> (string): Date</li>
 </ul>
 <h5>Example Request:</h5>
-<pre>https://pdf.2kauto.com/mv426?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=testvin&station_number=456789&inspector_name=JaneDoe&station_phone=5551234567&inspector_number=654321&date=09/10/2024</pre>
+<pre>https://pdf.2kauto.com/mv426?bussines_name=AutoService&bus_id=123456&street=789%20Broadway&city=NewYork&state=NY&zip=10001&vin=1e2r3t4y5u6i7o&station_number=456789&inspector_name=JaneDoe&station_phone=5551234567&inspector_number=654321&date=09/10/2024</pre>
 """
 
 # The root route for API documentation
